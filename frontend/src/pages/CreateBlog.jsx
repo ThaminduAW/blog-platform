@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import baseurl from '../baseurl';
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
@@ -12,7 +13,7 @@ const CreateBlog = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:5000/api/blogs",
+        `${baseurl}/api/blogs`,
         { title, content },
         {
           headers: {
@@ -66,7 +67,7 @@ const CreateBlog = () => {
           </div>
 
           <div className="flex justify-end">
-            <button 
+            <button
               type="submit"
               className="group relative inline-flex items-center justify-center border-4 border-black bg-red-500 px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base font-bold text-white transition-all duration-500 ease-in-out hover:bg-blue-700 hover:text-yellow-300 active:translate-x-1 active:translate-y-1"
               style={{ boxShadow: '4px 4px 0 0 #000' }}

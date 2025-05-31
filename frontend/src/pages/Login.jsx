@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import baseurl from '../baseurl';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,10 +11,13 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${baseurl}/api/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
 
       localStorage.setItem("token", res.data.token);
       navigate("/");
@@ -76,8 +80,8 @@ const Login = () => {
         </form>
         <p className="mt-4 sm:mt-6 text-center text-sm sm:text-base font-bold">
           Don't have an account?{" "}
-          <Link 
-            to="/register" 
+          <Link
+            to="/register"
             className="text-red-500 hover:text-blue-700 transition-all duration-500"
           >
             REGISTER HERE

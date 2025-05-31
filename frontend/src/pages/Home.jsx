@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BlogCard from "../components/BlogCard";
+import baseurl from '../baseurl';
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const res = await axios.get("http://localhost:5000/api/blogs");
+      const res = await axios.get(`${baseurl}/api/blogs`);
       setBlogs(res.data);
     };
     fetchBlogs();
